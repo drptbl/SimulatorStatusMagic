@@ -183,17 +183,17 @@ typedef struct {
 
   // Enable 5 bars of mobile (iPhone only)
   if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-    overrides->overrideItemIsEnabled[SignalStrengthBars] = 1;
-    overrides->values.itemIsEnabled[SignalStrengthBars] = 1;
-    overrides->overrideGsmSignalStrengthBars = 1;
-    overrides->values.gsmSignalStrengthBars = 5;
+    overrides->overrideItemIsEnabled[SignalStrengthBars] = 0;
+    overrides->values.itemIsEnabled[SignalStrengthBars] = 0;
+    overrides->overrideGsmSignalStrengthBars = 0;
+    overrides->values.gsmSignalStrengthBars = 0;
   }
 
   // Remove carrier text for iPhone, set it to "iPad" for the iPad
   overrides->overrideServiceString = 1;
   NSString *carrierText = self.carrierName;
   if ([carrierText length] <= 0) {
-    carrierText = ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) ? @"" : @"iPad";
+    carrierText = @"YouGov";
   }
   strcpy(overrides->values.serviceString, [carrierText cStringUsingEncoding:NSUTF8StringEncoding]);
 
